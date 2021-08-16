@@ -1,4 +1,4 @@
-val is_available : (unit -> unit) -> unit
+val is_available : (bool -> unit) -> unit
   [@@js.global "SafariViewController.isAvailable"]
 
 type options
