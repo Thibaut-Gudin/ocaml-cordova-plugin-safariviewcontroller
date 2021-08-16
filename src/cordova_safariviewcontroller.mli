@@ -9,7 +9,6 @@ val options :
   ?animated:bool ->
   ?transition:string ->
   ?enter_reader_mode_if_available:bool ->
-  (*TODO imposser que les string ci-dessous soi des ref de couleur et pas n'importe quel string, si possible?*)
   ?tint_color:string ->
   ?bar_color:string ->
   ?control_tint_color:string ->
@@ -17,5 +16,30 @@ val options :
   options
   [@@js.builder] [@@js.verbatim_names]
 
-val show : options -> onSuccess:(unit -> unit) -> onError:(unit -> unit) -> unit
+type result
+
+(*
+TODO: Use it instead of string for onSuccess??
+type event =
+  | Opened [@js "opened"]
+  | Loaded [@js "loaded"]
+  | Closed [@js "closed"]
+[@@js.enum]
+ *)
+
+val event : result -> string [@@js.get "event"]
+
+val show :
+  options -> onSuccess:(result -> unit) -> onError:(string -> unit) -> unit
   [@@js.global "SafariViewController.show"]
+
+[@@@js.stop]
+
+val show_available : unit -> bool
+
+[@@@js.start]
+
+[@@@js.implem
+let show_available () =
+  Js_of_ocaml.Js.Optdef.test
+    Js_of_ocaml.Js.Unsafe.global ##. SafariViewController##.show]
