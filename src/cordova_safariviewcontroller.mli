@@ -32,14 +32,3 @@ val event : result -> string [@@js.get "event"]
 val show :
   options -> onSuccess:(result -> unit) -> onError:(string -> unit) -> unit
   [@@js.global "SafariViewController.show"]
-
-[@@@js.stop]
-
-val show_available : unit -> bool
-
-[@@@js.start]
-
-[@@@js.implem
-let show_available () =
-  Js_of_ocaml.Js.Optdef.test
-    Js_of_ocaml.Js.Unsafe.global ##. SafariViewController##.show]
