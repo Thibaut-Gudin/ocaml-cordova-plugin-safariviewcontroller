@@ -1,6 +1,6 @@
 # ocaml-cordova-plugin-safariviewcontroller
 
-Binding to [cordova-plugin-safariviewcontroller]()
+Binding to [cordova-plugin-safariviewcontroller](https://github.com/EddyVerbruggen/cordova-plugin-safariviewcontroller)
 
 ## What does ocaml-cordova-plugin-safariviewcontroller do ?
 
