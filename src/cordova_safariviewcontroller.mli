@@ -18,16 +18,13 @@ val options :
 
 type result
 
-(*
-TODO: Use it instead of string for onSuccess??
 type event =
   | Opened [@js "opened"]
   | Loaded [@js "loaded"]
   | Closed [@js "closed"]
 [@@js.enum]
- *)
 
-val event : result -> string [@@js.get "event"]
+val get_event : result -> event [@@js.get "event"]
 
 val show :
   options -> onSuccess:(result -> unit) -> onError:(string -> unit) -> unit
